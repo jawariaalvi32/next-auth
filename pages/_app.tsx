@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     const user = localStorage.getItem("user-token")
     const publicPaths = ['/login', '/'];
 
-    if (!user && !publicPaths.includes(url)) {
+    if (!user) {
       setAuthorized(false);
       router.push({
         pathname: '/login',
@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   const permissions: Array<string> = [
-    // 'read', 'create', 'edit'
+    'read', 'create', 'edit'
   ]
 
   const routePermission: routePermission = {

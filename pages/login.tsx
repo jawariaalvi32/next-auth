@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Router from 'next/router'
+import Router, { useRouter, withRouter } from 'next/router'
 import React, { useState } from 'react'
 // import { loginUser } from '../services/user-service'
 const login = () => {
@@ -8,13 +8,14 @@ const login = () => {
         email: '',
         password: ''
     })
+    const router = useRouter()
+
     const loginUser = () => {
-        console.log("INNN")
         axios.post(`https://reqres.in/api/login`, userData)
             .then(res => {
                 console.log("INNNNN",res)
                 localStorage.setItem('user-token', res.data.token);
-                Router.push('/list')
+                // router.push('/list')
             })
             .catch(err => {
                 console.log(err)
@@ -39,4 +40,4 @@ const login = () => {
     )
 }
 
-export default login
+export default withRouter(login)

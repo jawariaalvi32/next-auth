@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Router  from 'next/router'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { routePermission } from '../models/RoutesType'
 // import { useSession } from "next-auth/react"
@@ -7,13 +7,17 @@ import { routePermission } from '../models/RoutesType'
 const Nav = ({ permissions }: { permissions: routePermission }) => {
     // const { data } = useSession()
 
+    const router = useRouter()
+    let isLoggedIn = null
+    if (typeof window !== 'undefined') {
+        isLoggedIn = localStorage.getItem('user-token')
+    }
+
     const signOut = () => {
         console.log("INK")
         localStorage.clear();
-        Router.push('/')
+        router.push('/')
     }
-
-   const isLoggedIn = localStorage.getItem('user-token')
 
     return (
         <nav className='header'>
@@ -21,13 +25,8 @@ const Nav = ({ permissions }: { permissions: routePermission }) => {
                 <a href='#'>NextAuth</a>
             </h1>
             <ul className={`main-nav `}>
-                <li>
-                    <Link href='/'>
-                        <a>Home</a>
-                    </Link>
-                </li>
                 {
-                    permissions.read &&
+                    permissions.read && isLoggedIn &&
                     <li>
                         <Link href='/list'>
                             <a>List</a>
@@ -35,29 +34,35 @@ const Nav = ({ permissions }: { permissions: routePermission }) => {
                     </li>
                 }
 
+                <li>
+                    <Link href='/'>
+                        <a>Home</a>
+                    </Link>
+                </li>
+
 
                 {
-                 !isLoggedIn &&
-                 (
-                    <li>
-                        <Link href='/login'>
-                            <a>
-                                Sign In
-                            </a>
-                        </Link>
-                    </li>
-                )}
+                    !isLoggedIn &&
+                    (
+                        <li>
+                            <Link href='/login'>
+                                <a>
+                                    Sign In
+                                </a>
+                            </Link>
+                        </li>
+                    )}
                 {
-                 isLoggedIn &&
-                 (
-                    <li onClick={() =>{signOut()}}>
-                        {/* <Link href='' > */}
+                    isLoggedIn &&
+                    (
+                        <li onClick={() => { signOut() }}>
+                            {/* <Link href='' > */}
                             <a>
                                 Sign Out
                             </a>
-                        {/* </Link> */}
-                    </li>
-                )}
+                            {/* </Link> */}
+                        </li>
+                    )}
             </ul>
         </nav>
 
