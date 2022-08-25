@@ -8,7 +8,7 @@ import { routePermission } from '../models/RoutesType';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Home from './index';
+import Home from '.';
 
 
 
@@ -53,8 +53,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   permissions.map(permission => {
     routePermission[permission] = true
   })
-console.log(authorized)
-  const ComponentToRender = authorized ? Login : permissions.length > 0 ? Component : Home ;
+
+  const ComponentToRender = authorized ? (permissions.length > 0 ? Component : Home) : Login
   return <Layout permissions={routePermission}>
     <ComponentToRender {...pageProps} />
   </Layout>

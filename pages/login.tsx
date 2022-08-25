@@ -12,7 +12,7 @@ const login = () => {
         console.log("INNN")
         axios.post(`https://reqres.in/api/login`, userData)
             .then(res => {
-                console.log(res)
+                console.log("INNNNN",res)
                 localStorage.setItem('user-token', res.data.token);
                 Router.push('/list')
             })

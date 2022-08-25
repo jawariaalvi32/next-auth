@@ -8,11 +8,12 @@ const Nav = ({ permissions }: { permissions: routePermission }) => {
     // const { data } = useSession()
 
     const signOut = () => {
-        localStorage.removeItem('user-token');
+        console.log("INK")
+        localStorage.clear();
         Router.push('/')
     }
 
-//    const isLoggedIn = localStorage.getItem('user-token')
+   const isLoggedIn = localStorage.getItem('user-token')
 
     return (
         <nav className='header'>
@@ -36,7 +37,7 @@ const Nav = ({ permissions }: { permissions: routePermission }) => {
 
 
                 {
-                //  !isLoggedIn &&
+                 !isLoggedIn &&
                  (
                     <li>
                         <Link href='/login'>
@@ -47,14 +48,14 @@ const Nav = ({ permissions }: { permissions: routePermission }) => {
                     </li>
                 )}
                 {
-                //  isLoggedIn &&
+                 isLoggedIn &&
                  (
-                    <li>
-                        <Link href='' onClick={() =>{signOut()}}>
+                    <li onClick={() =>{signOut()}}>
+                        {/* <Link href='' > */}
                             <a>
                                 Sign Out
                             </a>
-                        </Link>
+                        {/* </Link> */}
                     </li>
                 )}
             </ul>
