@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
@@ -12,8 +11,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>
-        Home
+      <div className='text-center'>
+        <h2 className='text-gray'>Next Auth</h2>
+        <h5 className='text-white'>Home</h5>
       </div>
 
     

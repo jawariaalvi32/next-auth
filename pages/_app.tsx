@@ -19,7 +19,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     // on initial load - run auth check 
-    console.log(router)
     authCheck(router.pathname);
   }, []);
 
@@ -29,12 +28,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     const publicPaths = ['/login', '/'];
 
     if (!user) {
+      console.log("I")
       setAuthorized(false);
       router.push({
         pathname: '/login',
         query: { returnUrl: router.asPath }
       });
     } else {
+      console.log("ELse")
       setAuthorized(true);
     }
   }

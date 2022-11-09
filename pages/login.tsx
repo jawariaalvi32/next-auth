@@ -1,7 +1,7 @@
 import axios from 'axios'
-import Router, { useRouter, withRouter } from 'next/router'
+import { useRouter, withRouter } from 'next/router'
 import React, { useState } from 'react'
-// import { loginUser } from '../services/user-service'
+
 const login = () => {
 
     const [userData, setUserData] = useState({
@@ -13,16 +13,14 @@ const login = () => {
     const loginUser = () => {
         axios.post(`https://reqres.in/api/login`, userData)
             .then(res => {
-                console.log("INNNNN",res)
                 localStorage.setItem('user-token', res.data.token);
-                // router.push('/list')
+                router.push("/")
             })
             .catch(err => {
                 console.log(err)
             })
     }
 
-    console.log(userData)
     return (
         <div className='container'>
             <div className="login">
@@ -35,7 +33,6 @@ const login = () => {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

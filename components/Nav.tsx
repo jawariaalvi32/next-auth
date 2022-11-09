@@ -14,7 +14,6 @@ const Nav = ({ permissions }: { permissions: routePermission }) => {
     }
 
     const signOut = () => {
-        console.log("INK")
         localStorage.clear();
         router.push('/')
     }
@@ -56,11 +55,9 @@ const Nav = ({ permissions }: { permissions: routePermission }) => {
                     isLoggedIn &&
                     (
                         <li onClick={() => { signOut() }}>
-                            {/* <Link href='' > */}
                             <a>
                                 Sign Out
                             </a>
-                            {/* </Link> */}
                         </li>
                     )}
             </ul>
