@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useRouter, withRouter } from 'next/router'
 import React, { useState } from 'react'
 
-const login = () => {
+const Login = () => {
 
     const [userData, setUserData] = useState({
         email: '',
@@ -37,4 +37,4 @@ const login = () => {
     )
 }
 
-export default withRouter(login)
+export default withRouter(Login)

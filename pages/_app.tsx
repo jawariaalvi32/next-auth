@@ -19,10 +19,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     // on initial load - run auth check 
-    authCheck(router.pathname);
+    authCheck();
   }, []);
 
-  const authCheck = (url: string) => {
+  const authCheck = () => {
     // redirect to login page if accessing a private page and not logged in 
     const user = localStorage.getItem("user-token")
     const publicPaths = ['/login', '/'];
